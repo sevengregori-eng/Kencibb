@@ -6,5 +6,18 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - run: echo Hello APK
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Crear archivo demo APK
+        run: |
+          mkdir output
+          echo "Kenciblack APK Demo" > output/app-release.apk
+
+      - name: Subir artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kenciblack-APK
+          path: output/app-release.apk
